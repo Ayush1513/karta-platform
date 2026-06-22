@@ -3,11 +3,13 @@ from sqlalchemy.orm import Session
 
 from app.database.dependencies import get_db
 from app.core.security import verify_token
+from app.core.roles import require_role
 
 from app.models.user import User
 from app.models.application import Application
 from app.models.scholarship import Scholarship
-from app.core.roles import require_role
+
+from app.schemas.application import StatusUpdate
 
 router = APIRouter(
     prefix="/application",
@@ -22,12 +24,10 @@ def apply_scholarship(
     scholar=Depends(require_role("scholar")),
     db: Session = Depends(get_db)
 ):
-    # Get logged in user
     user = db.query(User).filter(
         User.email == email
     ).first()
 
-    # Check scholarship exists
     scholarship = db.query(Scholarship).filter(
         Scholarship.id == scholarship_id
     ).first()
@@ -38,7 +38,6 @@ def apply_scholarship(
             detail="Scholarship not found"
         )
 
-    # Prevent duplicate applications
     existing_application = db.query(Application).filter(
         Application.user_id == user.id,
         Application.scholarship_id == scholarship_id
@@ -50,10 +49,10 @@ def apply_scholarship(
             detail="Already applied for this scholarship"
         )
 
-    # Create application
     application = Application(
         user_id=user.id,
-        scholarship_id=scholarship_id
+        scholarship_id=scholarship_id,
+        status="Applied"
     )
 
     db.add(application)
@@ -61,8 +60,9 @@ def apply_scholarship(
     db.refresh(application)
 
     return {
-        "message": "Application Submitted",
-        "application_id": application.id
+        "message": "Application submitted successfully",
+        "application_id": application.id,
+        "status": application.status
     }
 
 
@@ -82,20 +82,27 @@ def my_applications(
 
     return applications
 
+
 @router.get("/all")
 def get_all_applications(
     db: Session = Depends(get_db)
 ):
     return db.query(Application).all()
 
-@router.post("/approve/{application_id}")
-def approve_application(
+
+@router.get("/{application_id}")
+def get_application(
     application_id: int,
     email: str = Depends(verify_token),
     db: Session = Depends(get_db)
 ):
+    user = db.query(User).filter(
+        User.email == email
+    ).first()
+
     application = db.query(Application).filter(
-        Application.id == application_id
+        Application.id == application_id,
+        Application.user_id == user.id
     ).first()
 
     if not application:
@@ -104,44 +111,41 @@ def approve_application(
             detail="Application not found"
         )
 
-    if application.status == "Approved":
-        return {
-         "message": "Already approved"
-        }
-    application.status = "Approved"
-   
+    return application
 
-    db.commit()
-
-    return {
-        "message": "Application Approved"
-    }
-
-
-@router.post("/reject/{application_id}")
-def reject_application(
+@router.put("/update-status/{application_id}")
+def update_status(
     application_id: int,
+    data: StatusUpdate,
     email: str = Depends(verify_token),
+    scholar=Depends(require_role("scholar")),
     db: Session = Depends(get_db)
 ):
+    user = db.query(User).filter(
+        User.email == email
+    ).first()
+
     application = db.query(Application).filter(
-        Application.id == application_id
+        Application.id == application_id,
+        Application.user_id == user.id
     ).first()
 
     if not application:
         raise HTTPException(
-           status_code=404,
-           detail="Application not found"
+            status_code=404,
+            detail="Application not found"
         )
-    
-    if application.status == "Rejected":
-        return {
-            "message": "Already rejected"
-        }
-    application.status = "Rejected"
+
+    # Update status and notes
+    application.status = data.status
+    application.notes = data.notes
 
     db.commit()
+    db.refresh(application)
 
     return {
-        "message": "Application Rejected"
+        "message": "Status updated successfully",
+        "application_id": application.id,
+        "status": application.status,
+        "notes": application.notes
     }

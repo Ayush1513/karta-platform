@@ -25,12 +25,29 @@ def applied_students(
     scholarship_id: int,
     db: Session = Depends(get_db)
 ):
-
     applications = db.query(Application).filter(
         Application.scholarship_id == scholarship_id
     ).all()
 
-    return applications
+    result = []
+
+    for application in applications:
+
+        scholar = db.query(Scholar).filter(
+            Scholar.user_id == application.user_id
+        ).first()
+
+        result.append({
+            "application_id": application.id,
+            "scholar_name":
+                scholar.full_name if scholar else "Unknown",
+            "status": application.status,
+            "notes": application.notes,
+            "created_at": application.created_at,
+            "updated_at": application.updated_at
+        })
+
+    return result
 
 
 @router.get("/not-applied/{scholarship_id}")
@@ -38,7 +55,6 @@ def not_applied_students(
     scholarship_id: int,
     db: Session = Depends(get_db)
 ):
-
     applied_user_ids = db.query(
         Application.user_id
     ).filter(
@@ -56,13 +72,46 @@ def not_applied_students(
     return students
 
 
+@router.get("/progress/{scholarship_id}")
+def scholarship_progress(
+    scholarship_id: int,
+    db: Session = Depends(get_db)
+):
+    applications = db.query(Application).filter(
+        Application.scholarship_id == scholarship_id
+    ).all()
+
+    result = []
+
+    for application in applications:
+
+        scholar = db.query(Scholar).filter(
+            Scholar.user_id == application.user_id
+        ).first()
+
+        result.append({
+            "scholar_name":
+                scholar.full_name if scholar else "Unknown",
+
+            "status":
+                application.status,
+
+            "notes":
+                application.notes,
+
+            "updated_at":
+                application.updated_at
+        })
+
+    return result
+
+
 @router.get("/filter")
 def filter_students(
     course: str = Query(None),
     academic_year: str = Query(None),
     db: Session = Depends(get_db)
 ):
-
     query = db.query(Scholar)
 
     if course:
@@ -85,7 +134,6 @@ def scholarship_summary(
     scholarship_id: int,
     db: Session = Depends(get_db)
 ):
-
     total_students = db.query(
         Scholar
     ).count()
