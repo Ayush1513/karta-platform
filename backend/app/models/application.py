@@ -5,6 +5,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import DateTime
 
 from datetime import datetime
+
 from app.database.database import Base
 
 
@@ -16,8 +17,17 @@ class Application(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     scholarship_id = Column(Integer, ForeignKey("scholarships.id"))
 
-    status = Column(String, default="Pending")
+    status = Column(String, default="Applied")
+
+    notes = Column(String, nullable=True)
+
     created_at = Column(
-    DateTime,
-    default=datetime.utcnow
+        DateTime,
+        default=datetime.utcnow
+    )
+
+    updated_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
     )
