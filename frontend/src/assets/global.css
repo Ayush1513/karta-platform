@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #f8f6f2;
+}
+
+.layout {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.page-content {
+  padding: 30px;
+}

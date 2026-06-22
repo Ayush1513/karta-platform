@@ -1,0 +1,70 @@
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: 100vh;
+
+  background: #ffffff;
+  border-right: 1px solid #e7e2d9;
+
+  box-shadow: 4px 0 20px rgba(0,0,0,0.04);
+}
+
+.logo {
+  padding: 25px 20px;
+  margin-bottom: 15px;
+
+  border-bottom: 1px solid #f0ebe2;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: #444;
+
+  padding: 14px 18px;
+  margin: 4px 12px;
+
+  border-radius: 12px;
+
+  transition: all 0.3s ease;
+}
+
+.sidebar nav a:hover {
+  background: #f8f6f2;
+  transform: translateX(5px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-star {
+  color: #d4a24c;
+  font-size: 28px;
+}
+
+.sidebar nav a.active {
+  background: #fff4df;
+  color: #d4a24c;
+  font-weight: 600;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.logo small {
+  color: #777;
+}

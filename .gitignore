@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+backend/venv/
+
+# Environment Variables
+.env
+backend/.env
+
+# Database
+*.db
+backend/karta.db
+
+# Uploads
+uploads/
+backend/uploads/
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store

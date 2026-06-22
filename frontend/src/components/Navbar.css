@@ -1,0 +1,28 @@
+.navbar {
+  background: white;
+  padding: 20px;
+  border-bottom: 1px solid #e7e2d9;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-bar {
+  width: 350px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e7e2d9;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-profile {
+  background: #d4a24c;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 30px;
+}

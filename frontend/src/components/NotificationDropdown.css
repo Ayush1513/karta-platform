@@ -1,0 +1,12 @@
+.notification-btn {
+  border: none;
+  background: #d4a24c;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.badge {
+  margin-left: 6px;
+}

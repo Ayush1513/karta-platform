@@ -1,0 +1,338 @@
+/* =========================
+   PROFILE PAGE
+========================= */
+
+.profile-container {
+  width: 100%;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 42px;
+  color: #2f2f2f;
+}
+
+.page-header p {
+  margin-top: 8px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* =========================
+   PROFILE HEADER
+========================= */
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* =========================
+   PROFILE COMPLETION
+========================= */
+
+.profile-completion-card {
+  width: 260px;
+  min-width: 260px;
+
+  background: white;
+  border: 1px solid #e7e2d9;
+  border-radius: 18px;
+
+  padding: 24px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.profile-completion-card h4 {
+  margin: 0 0 15px;
+  color: #333;
+}
+
+.completion-score {
+  font-size: 38px;
+  font-weight: 700;
+  color: #d4a24c;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #ece8df;
+  border-radius: 30px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #d4a24c;
+  border-radius: 30px;
+}
+
+/* =========================
+   AVATAR CARD
+========================= */
+
+.profile-avatar-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background: white;
+  border: 1px solid #e7e2d9;
+  border-radius: 18px;
+
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  background: #d4a24c;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.avatar-info h3 {
+  margin: 0;
+  color: #333;
+  font-size: 22px;
+}
+
+.avatar-info p {
+  margin-top: 6px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* =========================
+   MAIN CARDS
+========================= */
+
+.profile-card {
+  background: white;
+  border: 1px solid #e7e2d9;
+  border-radius: 18px;
+  padding: 28px;
+  margin-bottom: 25px;
+}
+
+.profile-card h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px;
+  border: 1px solid #e7e2d9;
+  border-radius: 12px;
+  font-size: 14px;
+
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #d4a24c;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* =========================
+   STATS SECTION
+========================= */
+
+.profile-stats-grid {
+  display: flex;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.profile-stat-card {
+  background: white;
+  border: 1px solid #e7e2d9;
+  border-radius: 14px;
+
+  min-width: 170px;
+  padding: 20px;
+
+  text-align: center;
+
+  transition: 0.3s;
+}
+
+.profile-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.profile-stat-card h4 {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.profile-stat-card h2 {
+  margin-top: 10px;
+  color: #d4a24c;
+}
+
+/* =========================
+   RESUME STATUS
+========================= */
+
+.resume-card {
+  background: #fcfaf6;
+  border: 1px solid #e7e2d9;
+  border-radius: 16px;
+
+  padding: 22px;
+  margin-bottom: 25px;
+}
+
+.resume-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.resume-card p {
+  margin: 10px 0;
+}
+
+.resume-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.resume-info-box {
+  background: white;
+  border: 1px solid #e7e2d9;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.resume-info-box small {
+  color: #777;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.resume-info-box h4 {
+  margin: 0;
+  color: #333;
+}
+
+/* =========================
+   ABOUT ME
+========================= */
+
+.about-textarea {
+  width: 100%;
+  min-height: 160px;
+
+  padding: 14px;
+
+  border: 1px solid #e7e2d9;
+  border-radius: 12px;
+
+  resize: vertical;
+  font-size: 14px;
+}
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-btn {
+  background: #d4a24c;
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 14px 32px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn:hover {
+  background: #c69339;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+
+  .profile-header {
+    flex-direction: column;
+  }
+
+  .profile-completion-card {
+    width: 100%;
+  }
+
+  .profile-stats-grid {
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
